@@ -38,8 +38,22 @@
       toolbox
     },
     mounted(){
-      console.log(this.id)
-    }
+      console.log("111111111111")
+    },
+    beforeRouteEnter(to,from,next){
+      console.log('medicine  enter',this);
+      next()
+    },
+    beforeRouteUpdate(to,from,next){
+      console.log('medicine  update');
+      next()
+    },
+    beforeRouteLeave(to,from,next){
+      console.log('medicine  leave');
+      if(global.confirm('are you sure?')){
+        next()
+      }
+    },
   }
 </script>
 <style scoped>

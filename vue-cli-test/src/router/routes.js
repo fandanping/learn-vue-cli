@@ -11,6 +11,10 @@ export default[
     components: {
       default:generalinfo,
       b:login
+    },
+    beforeEnter:(to,from,next)=>{
+      console.log('medicine route before enter');
+       next()
     }
   },
   {
