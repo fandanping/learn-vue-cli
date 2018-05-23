@@ -1,6 +1,8 @@
 <template>
   <div id="app">
     <custom-header></custom-header>
+    <p>{{counter}}</p>
+    <p>{{fullName}}</p>
     <router-link to="/medicine/123">medicine</router-link>
     <router-link to="/medicine/456">medicine</router-link>
     <router-link to="/medicine">medicine</router-link>
@@ -14,6 +16,12 @@
 </template>
 
 <script>
+  import {
+    mapState,
+    mapGetters,
+    mapActions,
+    mapMutations
+  }from 'vuex'
   import Header from './layout/Header.vue'
   import Footer from './layout/Footer.vue'
 export default {
@@ -22,8 +30,43 @@ export default {
    'custom-footer':Footer
  },
   mounted(){
-   console.log(this.$route)
+    console.log("111"+this.$store.state.count)
+ /*   this.$store.dispatch('updateCountAsync',{
+      num:5,
+      time:2000
+    })*/
+   /* let i=0;
+    setInterval(()=>{
+      this.$store.commit('updateCount',{
+        num:i++,
+        num2:2
+      });
+    },2000)*/
+
+    this.updateCountAsync({
+      num:5,
+      time:2000
+    })
+  },
+  computed:{
+   /* ...mapState(['count']),*/
+  /*  ...mapState({
+      counter:'count'
+    }),*/
+    ...mapState({
+      counter:(state)=>state.count
+    }),
+    ...mapGetters({
+      'fullName':'fullName',
+    })
+    /*fullName(){
+      return this.$store.getters.fullName
+    }*/
+  },
+  methods:{
+    ...mapActions(['updateCountAsync']),
   }
+
 }
 </script>
 

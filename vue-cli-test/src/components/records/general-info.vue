@@ -38,7 +38,7 @@
       toolbox
     },
     mounted(){
-      console.log("111111111111")
+      console.log()
     },
     beforeRouteEnter(to,from,next){
       console.log('medicine  enter',this);
